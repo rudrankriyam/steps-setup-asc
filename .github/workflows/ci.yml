@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    env:
+      BITRISE_ANALYTICS_DISABLED: "true"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.x"
+
+      - name: Install Bitrise CLI
+        run: |
+          go install github.com/bitrise-io/bitrise/v2@v2.38.0
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+
+      - name: Install Bitrise dependencies
+        run: bitrise setup --minimal
+
+      - name: Verify tool versions
+        run: |
+          bitrise --version
+          ~/.bitrise/tools/stepman --version
+          ~/.bitrise/tools/envman --version
+
+      - name: Stepman audit
+        run: ~/.bitrise/tools/stepman audit --step-yml ./step.yml
+
+      - name: Run Bitrise workflow (audit-this-step)
+        run: bitrise run audit-this-step
+
+      - name: Run Bitrise workflow (test-install)
+        run: bitrise run test-install
+
+      - name: Run Bitrise workflow (test-run-help)
+        run: bitrise run test-run-help
