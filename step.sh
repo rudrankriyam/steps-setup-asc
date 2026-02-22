@@ -246,6 +246,10 @@ configure_runtime_env() {
   if [ -n "${private_key:-}" ]; then
     export ASC_PRIVATE_KEY="${private_key}"
   fi
+
+  if [ -n "${private_key_b64:-}" ]; then
+    export ASC_PRIVATE_KEY_B64="${private_key_b64}"
+  fi
 }
 
 run_user_command() {
