@@ -1,28 +1,43 @@
 title: Setup asc CLI
-summary: Install asc and optionally run an asc command.
+summary: Install and run asc (App Store Connect CLI) in Bitrise.
 description: |-
-  Installs the `asc` CLI (App Store Connect CLI) from GitHub Releases and optionally runs a command.
+  Installs `asc` (App Store Connect CLI) from GitHub Releases and optionally runs
+  an `asc` command in the same Step.
 
   ### Configuring the Step
 
   1. Select mode:
      - `install`: installs `asc` only
      - `run`: installs `asc` and executes the provided command
-  2. Set `version` to `latest` or a pinned version (for example `0.31.5`).
+  2. Set `version` to `latest` or a pinned version (for example `0.31.5` or `v0.31.5`).
   3. If using `run` mode, provide `command`.
-  4. Optionally provide auth inputs to export `ASC_*` environment variables for command execution.
+  4. Optionally provide auth inputs to export `ASC_*` environment variables for
+     command execution.
+  5. Use Secret Env Vars for sensitive inputs.
+
+  ### Security notes
+
+  - Step verifies downloaded binary checksum before install.
+  - Auth inputs are marked as sensitive where applicable.
+  - Prefer `private_key_path` or `private_key_b64` over inline private key content.
 
   ### Useful links
 
   - https://github.com/rudrankriyam/App-Store-Connect-CLI
   - https://asccli.sh/
+  - https://docs.bitrise.io/en/steps-and-workflows/introduction-to-steps.html
 
-website: https://github.com/rudrankriyam/steps-setup-asc
+website: https://github.com/rudrankriyam/App-Store-Connect-CLI
 source_code_url: https://github.com/rudrankriyam/steps-setup-asc
 support_url: https://github.com/rudrankriyam/steps-setup-asc/issues
 project_type_tags:
 - ios
 - macos
+- react-native
+- flutter
+- cordova
+- ionic
+- kotlin-multiplatform
 type_tags:
 - utility
 is_requires_admin_user: false
@@ -114,6 +129,15 @@ inputs:
     summary: exported as ASC_PRIVATE_KEY in run mode
     description: |-
       Raw private key content. Use a Secret Env Var.
+    is_sensitive: true
+
+- private_key_b64: ""
+  opts:
+    category: Auth (optional)
+    title: ASC private key content (base64)
+    summary: exported as ASC_PRIVATE_KEY_B64 in run mode
+    description: |-
+      Base64-encoded private key content. Use a Secret Env Var.
     is_sensitive: true
 
 - bypass_keychain: "no"
