@@ -63,6 +63,17 @@ export_output() {
   export "${key}=${value}"
 }
 
+persist_path() {
+  local path_value="$1"
+
+  if command -v envman >/dev/null 2>&1; then
+    envman add --key PATH --value "${path_value}" >/dev/null
+    return
+  fi
+
+  log_warn "envman not found, PATH update is only available for current process."
+}
+
 resolve_requested_version() {
   local raw_version="${version:-latest}"
   local latest_url
@@ -262,7 +273,7 @@ run_user_command() {
   log_info "Running user command in ${working_directory}."
   (
     cd "${working_directory}"
-    bash -lc "${run_command}"
+    bash -c "${run_command}"
   ) || command_exit_code=$?
 
   export_output "ASC_COMMAND_EXIT_CODE" "${command_exit_code}"
@@ -316,6 +327,7 @@ main() {
   reported_version="${ASSET_VERSION#v}"
   export PATH="$(dirname "${asc_path}"):${PATH}"
 
+  persist_path "${PATH}"
   export_output "ASC_CLI_PATH" "${asc_path}"
   export_output "ASC_CLI_VERSION" "${reported_version}"
 
