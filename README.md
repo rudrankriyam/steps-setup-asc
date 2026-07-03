@@ -11,7 +11,7 @@ Connect CLI.
 ## Step ID
 
 - Planned StepLib ID: `setup-asc`
-- GitHub release tag: `v1.0.0`
+- GitHub release tag: `v1.0.1`
 
 ## Publication status
 
@@ -105,7 +105,7 @@ workflows:
 
 ## Publishing
 
-- GitHub source release: `v1.0.0`
+- GitHub source release: `v1.0.1`
 - StepLib publication is still pending
 - Keep the step version separate from the `asc` CLI version selected by the
   `version` input
