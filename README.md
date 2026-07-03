@@ -1,23 +1,24 @@
 # Setup asc CLI (Bitrise Step)
 
 [![CI](https://github.com/rudrankriyam/steps-setup-asc/actions/workflows/ci.yml/badge.svg)](https://github.com/rudrankriyam/steps-setup-asc/actions/workflows/ci.yml)
-[![Status](https://img.shields.io/badge/status-source--only%20preview-yellow.svg)](#publication-status)
+[![Status](https://img.shields.io/badge/status-GitHub%20release%20available-brightgreen.svg)](#publication-status)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
-Source-only preview Bitrise Step for installing and running
+GitHub-released source preview Bitrise Step for installing and running
 [`asc`](https://github.com/rudrankriyam/App-Store-Connect-CLI), the App Store
 Connect CLI.
 
 ## Step ID
 
 - Planned StepLib ID: `setup-asc`
+- GitHub release tag: `v1.0.0`
 
 ## Publication status
 
-This repository is not published to the public Bitrise StepLib yet, and it has
-no release tags. The `setup-asc` snippets below show the planned StepLib usage
-after publication; they are not an install path that works from the registry
-today.
+This repository has a GitHub source release, but it is not published to the
+public Bitrise StepLib yet. The `setup-asc` snippets below show the planned
+StepLib usage after publication; they are not an install path that works from
+the registry today.
 
 ## Why use this step
 
@@ -104,8 +105,8 @@ workflows:
 
 ## Publishing
 
+- GitHub source release: `v1.0.0`
 - StepLib publication is still pending
-- Create a semver tag before sharing a stable StepLib version
 - Keep the step version separate from the `asc` CLI version selected by the
   `version` input
 
