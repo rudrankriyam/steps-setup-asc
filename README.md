@@ -1,16 +1,23 @@
 # Setup asc CLI (Bitrise Step)
 
 [![CI](https://github.com/rudrankriyam/steps-setup-asc/actions/workflows/ci.yml/badge.svg)](https://github.com/rudrankriyam/steps-setup-asc/actions/workflows/ci.yml)
-[![Bitrise Step](https://img.shields.io/badge/Bitrise-Step-6A5ACD)](https://www.bitrise.io/integrations/steps/setup-asc)
+[![Status](https://img.shields.io/badge/status-source--only%20preview-yellow.svg)](#publication-status)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
-Official Bitrise Step for installing and running
+Source-only preview Bitrise Step for installing and running
 [`asc`](https://github.com/rudrankriyam/App-Store-Connect-CLI), the App Store
 Connect CLI.
 
 ## Step ID
 
-- `setup-asc`
+- Planned StepLib ID: `setup-asc`
+
+## Publication status
+
+This repository is not published to the public Bitrise StepLib yet, and it has
+no release tags. The `setup-asc` snippets below show the planned StepLib usage
+after publication; they are not an install path that works from the registry
+today.
 
 ## Why use this step
 
@@ -30,7 +37,10 @@ Connect CLI.
     variables, and runs the provided command
   - exports `ASC_COMMAND_EXIT_CODE`
 
-## Quick start
+## Pending StepLib examples
+
+These examples show the intended shape after the step is published and tagged.
+For now, clone this repository and use the local validation commands below.
 
 Install only:
 
@@ -92,6 +102,13 @@ workflows:
 - asc docs: https://asccli.sh/
 - Bitrise Step docs: https://docs.bitrise.io/en/steps-and-workflows/introduction-to-steps.html
 
+## Publishing
+
+- StepLib publication is still pending
+- Create a semver tag before sharing a stable StepLib version
+- Keep the step version separate from the `asc` CLI version selected by the
+  `version` input
+
 ## Local validation
 
 ```bash
@@ -100,4 +117,3 @@ bitrise run audit-this-step
 bitrise run test-install
 bitrise run test-run-help
 ```
-
